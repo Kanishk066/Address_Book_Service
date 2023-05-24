@@ -1,0 +1,69 @@
+UC-1
+create database AddressBookService;
+use AddressBookService;
+
+UC-2
+create table contacts(
+id int primary key auto_increment,
+first_name varchar(50) not null,
+last_name varchar(50) not null,
+address varchar(100),
+city varchar(50),
+state varchar(50),
+zip int(10),
+phone_number int(10),
+email varchar(100)
+);
+
+UC-3
+insert into contacts(first_name, last_name, address, city, state, zip, phone_number, email)
+values('Kanishk', 'Singhal', 'Jaipuria', 'Agra', 'UP', 283125, 78691520, 'kanishk6117@gmail.com');
+select * from contacts; 
+insert into contacts(first_name, last_name, address, city, state, zip, phone_number, email)
+values('Amit', 'Rathi', 'Ansal Town', 'Noida', 'UP', 289200, 97548730, 'amitrathi66@gmail.com');
+
+insert into contacts(first_name, last_name, address, city, state, zip, phone_number, email)
+values('Dhruv', 'Dixit', 'Rajpur Gardens', 'Bhopal', 'MP', 284200, 910557766, 'ddnavil56@gmail.com');
+select * from contacts;
+
+UC-4
+update contacts set phone_number = 943256787, email = 'amitrathi86@gmail.com' where first_name = 'Amit' and last_name = 'Rathi';
+select * from contacts where first_name = 'Amit' AND last_name = 'Rathi';
+
+UC-5
+delete from contacts where first_name = 'Amit' and last_name = 'Rathi';
+select * from contacts where first_name = 'Amit' AND last_name = 'Rathi';
+
+UC-6
+select * from contacts where city = 'Agra';
+select * from contacts where state = 'UP';
+
+UC-7
+select city, count(*) as contact_count
+from contacts
+group by city;
+select state, count(*) as contact_count
+from contacts
+group by state;
+
+UC-8
+select * from contacts where city = 'Agra' order by first_name, last_name;
+
+UC-9
+alter table contacts
+add column name varchar(50),
+add column type varchar(50);
+update contacts set name = 'My Family Address Book', type = 'Family'
+where id = 1;
+
+update contacts
+set name = 'My Friends Address Book', type = 'Friends'
+where id = 2;
+select id, name, type from contacts;
+
+UC-10
+select type, count(*) as contact_count from contacts group by type;
+
+UC-11
+insert into contacts (name, type) values ('Amit Rathi', 'Friend');
+insert into contacts (name, type) values ('Amit Rathi', 'Family');
